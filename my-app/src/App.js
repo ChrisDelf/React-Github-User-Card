@@ -7,11 +7,13 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      user: {}
+      user: {},
+      followers: []
     };
   }
   componentDidMount() {
     this.fetchUser();
+    this.fetchFollowers();
   }
   fetchUser = () => {
     fetch(`https://api.github.com/users/ChrisDelf`)
@@ -25,14 +27,29 @@ class App extends React.Component {
         console.log('WE HAVE A PROBLEM', err);
       });
   };
+fetchFollowers = () => {
+  fetch(`https://api.github.com/users/ChrisDelf/followers`)
+      .then(response => {
+
+        return response.json();
+      })
+      .then(f => this.setState({ followers: f}))
+
+      .catch(err => {
+        console.log('WE HAVE A PROBLEM', err);
+      });
+  };
+
+
 
   render() {
     return (
       <div className="App">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <UserCard props={this.state.user} />
+
+      <UserCard props={this.state.user} />
+      {this.state.followers.map(follower =>
+        <UserCard key = {follower.id} props={follower} />
+      )}
       </div>
     );
   }

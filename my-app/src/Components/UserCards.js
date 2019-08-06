@@ -31,7 +31,7 @@ class UserCard extends React.Component {
 
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
-              {this.props.props.name}
+              {this.props.props.login}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
               erpdnmlg oiwern gdfl;gsdofgnewrlg dfdlsgsndoen ejoerfdp pojsopopd
