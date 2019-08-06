@@ -19,6 +19,7 @@ class SearchForm extends React.Component {
   submitItem = event => {
     event.preventDefault();
     this.props.fetchSearch(this.state.item);
+    this.setState({ logic: false })
   };
 
   render() {
